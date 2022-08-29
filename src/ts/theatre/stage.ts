@@ -67,7 +67,13 @@ export class Stage {
         Stage.canvas.addEventListener(
             "click",
             function (ev) {
-                console.log({ x: ev.clientX, y: ev.clientY });
+                const point = { x: ev.clientX, y: ev.clientY };
+                console.log(point);
+                const actors = Stage.stageCollections.getActors();
+
+                for (const actor of actors.getAll()) {
+                    actor.onClick(point, () => console.log("hello"));
+                }
             },
             false
         );

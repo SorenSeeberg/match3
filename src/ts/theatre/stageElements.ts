@@ -46,6 +46,26 @@ export class Actor extends StageElement {
     }: StageElementProps) {
         super({ size, position, velocity, color });
     }
+
+    onClick(point: Vector2d, callback: () => void): void {
+        if (this.isPointInRect(point)) {
+            callback();
+            this.getSprite().setColor("green");
+        }
+    }
+
+    isPointInRect(point: Vector2d): boolean {
+        const sprite = this.getSprite();
+        const position = sprite.getPosition();
+        const size = sprite.getSize();
+
+        const x1 = point.x >= position.x;
+        const y1 = point.y >= position.y;
+        const x2 = point.x <= position.x + size.x;
+        const y2 = point.y <= position.y + size.y;
+
+        return x1 && y1 && x2 && y2;
+    }
 }
 
 export class StaticProp extends StageElement {
