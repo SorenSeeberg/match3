@@ -49,6 +49,10 @@ class StageCollection<T extends IStageElement> {
         throw `Element not found: <${this}>${id}`;
     }
 
+    getAll() {
+        return this.elements;
+    }
+
     draw() {
         for (const element of this.elements) {
             element.getSprite().draw();

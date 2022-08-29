@@ -11,22 +11,25 @@ interface SpriteProps {
 }
 
 export interface ISprite {
-    id: string;
-    size: Vector2d;
-    position: Vector2d;
-    velocity: Vector2d;
-    color: string;
+    getId(): string;
+    getSize(): Vector2d;
+    setSize(size: Vector2d): void;
+    getPosition(): Vector2d;
+    setPosition(position: Vector2d): void;
+    getVelocity(): Vector2d;
+    setVelocity(velocity: Vector2d): void;
+    setColor(color: string): void;
+    getColor(): string;
     children: Array<ISprite>;
     draw(): void;
-    onClick(point: Vector2d, callback: () => void): void;
 }
 
 export class Sprite implements ISprite {
-    id: string;
-    size: Vector2d;
-    position: Vector2d;
-    velocity: Vector2d;
-    color: string;
+    protected id: string;
+    protected size: Vector2d;
+    protected position: Vector2d;
+    protected velocity: Vector2d;
+    protected color: string;
     children: Array<ISprite>;
 
     constructor({
@@ -43,11 +46,40 @@ export class Sprite implements ISprite {
         this.color = color;
         this.children = children;
     }
+    getSize(): Vector2d {
+        return this.size;
+    }
 
-    onClick(point: Vector2d, callback: () => void): void {
-        if (Stage.getContext().isPointInPath(point.x, point.y)) {
-            callback();
-        }
+    setSize(size: Vector2d): void {
+        this.size = size;
+    }
+
+    getPosition(): Vector2d {
+        return this.position;
+    }
+
+    setPosition(position: Vector2d): void {
+        this.position = position;
+    }
+
+    getVelocity(): Vector2d {
+        return this.velocity;
+    }
+
+    setVelocity(velocity: Vector2d): void {
+        this.velocity = velocity;
+    }
+
+    getId(): string {
+        return this.id;
+    }
+
+    getColor(): string {
+        return this.color;
+    }
+
+    setColor(color: string) {
+        this.color = color;
     }
 
     draw() {

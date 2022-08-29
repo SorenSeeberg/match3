@@ -2,7 +2,6 @@ import { Stage } from "./theatre/stage";
 import { Actor } from "./theatre/stageElements";
 
 (function () {
-    console.log("main.ts loaded");
     Stage.init();
     const actors = Stage.getStageCollections().getActors();
 
